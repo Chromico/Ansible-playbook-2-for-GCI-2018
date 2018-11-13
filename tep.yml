@@ -1,0 +1,39 @@
+---
+
+# Written by CHROMICO for GCI 2018
+
+# This playbook will install 3 packages with yum and update all packages
+# to the latest version. The first package is Arduino which is an IDE
+# to write and compile code for hardware and you can upload it to the hardware
+# itself. The second package is Wormux which is a 2D game that you can 
+# play to relay a bit and finally the third package is httpd which is a 
+# piece of software that listens for network requests and responds to
+# them.
+
+
+
+- name: Installing Arduino IDE, Wormux and httpd
+  hosts: localhost
+  become: yes
+  become_method: sudo
+  tasks:
+    
+    - name: Installing Arduino
+      yum:
+        name: arduino
+        state: latest
+       
+    - name: Installing Wormux 
+      yum:
+        name: wormux
+        state: latest
+        
+    - name: Installing httpd
+      yum:
+        name: httpd
+        state: latest
+        
+    - name: Upgrading all packages
+      yum:
+        name: '*'
+        state: latest      
